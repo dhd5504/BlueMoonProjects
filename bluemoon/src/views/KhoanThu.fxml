@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="625.0"
+            styleClass="pane" stylesheets="@../source/Main.css"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.KhoanThuController">
+    <children>
+        <!-- Table View -->
+        <TableView fx:id="tvKhoanPhi" layoutX="7.0" layoutY="94.0"
+                   prefHeight="500.0" prefWidth="500.0"
+                   AnchorPane.topAnchor="100.0"
+                   AnchorPane.leftAnchor="10.0"
+                   AnchorPane.rightAnchor="10.0"
+                   AnchorPane.bottomAnchor="10.0">
+            <columns>
+                <TableColumn fx:id="colMaKhoanPhi"   prefWidth="93.0" text="Mã khoản thu" />
+                <TableColumn fx:id="colTenKhoanThu"   prefWidth="147.0" text="Tên khoản thu" />
+                <TableColumn fx:id="colSoTien"        prefWidth="95.0" text="Số tiền" />
+                <TableColumn fx:id="colLoaiKhoanThu"  prefWidth="100.0" text="Loại" />
+                <TableColumn fx:id="colCachTinh"      prefWidth="100.0" text="Cách tính" />
+                <TableColumn fx:id="colDonViTinh"     prefWidth="100.0" text="Đơn vị" />
+                <TableColumn fx:id="colMoTa"          prefWidth="120.0" text="Mô tả" />
+                <TableColumn fx:id="colNgayTao"       prefWidth="120.0" text="Ngày tạo" />
+            </columns>
+        </TableView>
+
+        <!-- Search Section -->
+        <TextField fx:id="tfSearch"
+                   layoutX="7.0" layoutY="49.0"
+                   prefHeight="40.0" prefWidth="310.0"
+                   AnchorPane.topAnchor="50.0"
+                   AnchorPane.leftAnchor="10.0"
+                   AnchorPane.rightAnchor="300.0"
+                   AnchorPane.bottomAnchor="510.0"
+                   promptText="Tìm kiếm..." />
+        <ComboBox fx:id="cbChooseSearch"
+                  layoutX="333.0" layoutY="49.0"
+                  prefHeight="40.0" prefWidth="170.0"
+                  AnchorPane.topAnchor="50.0"
+                  AnchorPane.leftAnchor="330.0"
+                  AnchorPane.rightAnchor="125.0"
+                  AnchorPane.bottomAnchor="510.0" />
+        <Button text="Tìm kiếm" styleClass="button3"
+                onAction="#searchKhoanThu"
+                layoutX="514.0" layoutY="49.0"
+                prefHeight="40.0" prefWidth="110.0"
+                AnchorPane.topAnchor="50.0"
+                AnchorPane.leftAnchor="505.0"
+                AnchorPane.rightAnchor="10.0"
+                AnchorPane.bottomAnchor="510.0" />
+
+        <!-- Action Buttons -->
+        <Button text="Thêm khoản thu" styleClass="button1" textFill="#2e088d"
+                onAction="#addKhoanThu"
+                layoutX="10.0" layoutY="5.0"
+                prefHeight="40.0" prefWidth="140.0"
+                AnchorPane.topAnchor="5.0"
+                AnchorPane.leftAnchor="10.0" />
+        <Button text="Xóa khoản thu" styleClass="button1" textFill="#2e088d"
+                onAction="#delKhoanThu"
+                layoutX="160.0" layoutY="5.0"
+                prefHeight="40.0" prefWidth="130.0"
+                AnchorPane.topAnchor="5.0"
+                AnchorPane.leftAnchor="160.0" />
+        <Button text="Cập nhật khoản thu" styleClass="button1" textFill="#2e088d"
+                onAction="#updateKhoanThu"
+                layoutX="300.0" layoutY="5.0"
+                prefHeight="40.0" prefWidth="150.0"
+                AnchorPane.topAnchor="5.0"
+                AnchorPane.leftAnchor="300.0" />
+    </children>
+</AnchorPane>

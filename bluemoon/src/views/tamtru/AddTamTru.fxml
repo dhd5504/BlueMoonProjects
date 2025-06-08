@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.tamtru.AddTamTruController"
+            prefWidth="500.0" prefHeight="400.0">
+
+    <children>
+        <Label layoutX="180.0" layoutY="20.0" text="Thêm Thông Tin Tạm Trú">
+            <font>
+                <Font name="System Bold" size="18"/>
+            </font>
+        </Label>
+
+        <Label layoutX="40.0" layoutY="80.0" text="Địa chỉ tạm trú:"/>
+        <TextField fx:id="tfDiaChi" layoutX="180.0" layoutY="75.0" prefWidth="280.0"/>
+
+        <Label layoutX="40.0" layoutY="130.0" text="Ngày bắt đầu:"/>
+        <DatePicker fx:id="dpNgayBatDau" layoutX="180.0" layoutY="125.0"/>
+
+        <Label layoutX="40.0" layoutY="180.0" text="Ngày kết thúc:"/>
+        <DatePicker fx:id="dpNgayKetThuc" layoutX="180.0" layoutY="175.0"/>
+
+        <Label layoutX="40.0" layoutY="230.0" text="Ghi chú:"/>
+        <TextArea fx:id="taGhiChu" layoutX="180.0" layoutY="225.0" prefHeight="80.0" prefWidth="280.0"/>
+
+        <Button text="Lưu" layoutX="180.0" layoutY="330.0" onAction="#handleSave"/>
+<!--        <Button text="Hủy" layoutX="260.0" layoutY="330.0" onAction="#handleCancel"/>-->
+    </children>
+</AnchorPane>

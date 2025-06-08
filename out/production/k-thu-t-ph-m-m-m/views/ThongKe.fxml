@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefWidth="650.0" prefHeight="600.0"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ThongKeController"
+            stylesheets="@../source/Main.css"
+            styleClass="pane">
+
+    <!-- Title -->
+    <Label text="THỐNG KÊ" styleClass="header"
+           AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="280.0" />
+
+    <!-- Khoản thu -->
+    <Label text="Khoản thu:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0" />
+    <ComboBox fx:id="cbKhoanThu"
+              prefWidth="200.0" prefHeight="30.0"
+              AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="75.0" />
+
+    <!-- Đợt thu -->
+    <Label text="Đợt thu:" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="80.0" />
+    <ComboBox fx:id="cbDotThu"
+              prefWidth="200.0" prefHeight="30.0"
+              AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="75.0" />
+
+    <!-- Hiển thị khoản thu đang chọn -->
+    <Label fx:id="lblChonKhoan" text=""
+           AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="120.0" />
+
+    <!-- Nút Lọc -->
+    <Button text="Lọc" styleClass="button1"
+            onAction="#loc"
+            prefWidth="80.0" prefHeight="30.0"
+            AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="160.0" />
+
+    <!-- Bảng Thống kê -->
+    <TableView fx:id="tvThongKe"
+               prefWidth="630.0" prefHeight="370.0"
+               AnchorPane.topAnchor="200.0"
+               AnchorPane.leftAnchor="10.0"
+               AnchorPane.rightAnchor="10.0"
+               AnchorPane.bottomAnchor="10.0">
+        <columns>
+            <TableColumn fx:id="colTenPhi"    prefWidth="315.0" text="Tên phí" />
+            <TableColumn fx:id="colTongSoTien" prefWidth="315.0" text="Tổng số tiền" />
+        </columns>
+    </TableView>
+
+</AnchorPane>

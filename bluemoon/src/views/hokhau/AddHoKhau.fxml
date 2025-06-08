@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../../source/change.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.hokhau.AddHoKhau">
+    <children>
+        <Label layoutX="80.0" layoutY="40.0" text="Mã hộ khẩu" />
+        <TextField fx:id="tfMaHoKhau" layoutX="250.0" layoutY="35.0" prefWidth="450.0" prefHeight="30.0"/>
+
+        <Label layoutX="80.0" layoutY="80.0" text="Địa chỉ" />
+        <TextField fx:id="tfDiaChi" layoutX="250.0" layoutY="75.0" prefWidth="450.0" prefHeight="30.0"/>
+
+        <Label layoutX="80.0" layoutY="130.0" text="Mã chủ hộ" />
+        <TextField fx:id="tfMaChuHo" layoutX="250.0" layoutY="125.0" prefWidth="450.0" prefHeight="30.0"/>
+
+        <Label layoutX="80.0" layoutY="180.0" text="Tên chủ hộ" />
+        <TextField fx:id="tfTenChuHo" layoutX="250.0" layoutY="175.0" prefWidth="450.0" prefHeight="30.0"/>
+
+        <Label layoutX="80.0" layoutY="230.0" text="Tuổi" />
+        <TextField fx:id="tfTuoi" layoutX="250.0" layoutY="225.0" prefWidth="450.0" prefHeight="30.0"/>
+
+        <Label layoutX="80.0" layoutY="280.0" text="CMND" />
+        <TextField fx:id="tfCMND" layoutX="250.0" layoutY="275.0" prefWidth="450.0" prefHeight="30.0"/>
+
+        <Label layoutX="80.0" layoutY="330.0" text="Số điện thoại" />
+        <TextField fx:id="tfSoDienThoai" layoutX="250.0" layoutY="325.0" prefWidth="450.0" prefHeight="30.0"/>
+
+        <Button text="Thêm hộ khẩu" layoutX="350.0" layoutY="400.0" onAction="#addHoKhau"/>
+        <Label layoutX="300.0" layoutY="10.0" text="THÊM HỘ KHẨU" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    </children>
+</AnchorPane>

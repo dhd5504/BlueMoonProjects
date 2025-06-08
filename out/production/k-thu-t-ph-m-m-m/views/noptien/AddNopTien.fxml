@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefWidth="625.0" prefHeight="500.0"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.noptien.AddNopTien"
+            styleClass="pane" stylesheets="@/source/Main.css">
+
+   <!-- Title -->
+   <Label text="ĐÓNG PHÍ" styleClass="header"
+          AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="260.0" />
+
+   <!-- Chọn khoản thu -->
+   <Label text="Khoản thu:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="100.0" />
+   <Button text="Chọn" onAction="#chooseKhoanThu"
+           AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="95.0" />
+   <TextField fx:id="tfTenKhoanThu" editable="false"
+              AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="95.0"
+              prefWidth="350.0" prefHeight="30.0" />
+
+   <!-- Chọn người nộp -->
+   <Label text="Người nộp:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="160.0" />
+   <Button text="Chọn" onAction="#chooseNguoiNop"
+           AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="155.0" />
+   <TextField fx:id="tfTenNguoiNop" editable="false"
+              AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="155.0"
+              prefWidth="350.0" prefHeight="30.0" />
+
+   <!-- Chọn đợt thu -->
+   <Label text="Đợt thu:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="220.0" />
+   <ComboBox fx:id="cbDotThu"
+             promptText="Chọn đợt thu"
+             AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="215.0"
+             prefWidth="200.0" prefHeight="30.0" />
+   <Label text="Số tiền (VNĐ):" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="280.0" />
+   <TextField fx:id="tfSoTienDaNop" promptText="Nhập số tiền đã nộp..."
+              AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="275.0"
+              prefWidth="200.0" prefHeight="30.0" />
+
+   <!-- Trạng thái -->
+   <Label text="Trạng thái:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="340.0" />
+   <ComboBox fx:id="cbTrangThai"
+             AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="335.0"
+             prefWidth="150.0" prefHeight="30.0" />
+
+   <!-- Action Buttons -->
+   <HBox spacing="15"
+         AnchorPane.bottomAnchor="20.0"
+         AnchorPane.rightAnchor="20.0">
+      <Button text="Thêm" styleClass="button1" onAction="#addNopTien" />
+      <!-- <Button text="Hủy" styleClass="button2" onAction="#cancel" /> -->
+   </HBox>
+
+</AnchorPane>

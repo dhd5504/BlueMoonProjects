@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefWidth="500" prefHeight="350" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.tamtru.TamTruDetailController">
+
+    <children>
+        <Label layoutX="160.0" layoutY="20.0" text="Thông tin tạm trú">
+            <font>
+                <Font name="System Bold" size="20.0"/>
+            </font>
+        </Label>
+
+        <Label layoutX="40.0" layoutY="70.0" text="Địa chỉ tạm trú:"/>
+        <Label fx:id="lbDiaChi" layoutX="180.0" layoutY="70.0" text="-" wrapText="true" prefWidth="280.0"/>
+
+        <Label layoutX="40.0" layoutY="110.0" text="Ngày bắt đầu:"/>
+        <Label fx:id="lbNgayBatDau" layoutX="180.0" layoutY="110.0" text="-"/>
+
+        <Label layoutX="40.0" layoutY="150.0" text="Ngày kết thúc:"/>
+        <Label fx:id="lbNgayKetThuc" layoutX="180.0" layoutY="150.0" text="-"/>
+
+        <Label layoutX="40.0" layoutY="190.0" text="Ghi chú:"/>
+        <TextArea fx:id="taGhiChu"
+                  layoutX="180.0" layoutY="190.0"
+                  prefHeight="100.0" prefWidth="280.0"
+                  editable="false" wrapText="true"/>
+
+        <Button layoutX="210.0" layoutY="310.0" mnemonicParsing="false" text="Đóng"
+                onAction="#closeWindow"/>
+        <Button layoutX="100.0" layoutY="310.0"
+                mnemonicParsing="false"
+                text="Cập nhật"
+                onAction="#handleCapNhat"/>
+    </children>
+</AnchorPane>

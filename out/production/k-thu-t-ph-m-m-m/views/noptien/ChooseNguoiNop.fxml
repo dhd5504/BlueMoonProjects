@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefWidth="625.0" prefHeight="600.0"
+            styleClass="pane"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.noptien.ChooseNguoiNop">
+
+   <!-- Title -->
+   <Label text="CHỌN NGƯỜI NỘP"
+          style="-fx-font-size: 28px; -fx-font-weight: bold;"
+          AnchorPane.topAnchor="20.0"
+          AnchorPane.leftAnchor="200.0" />
+
+   <!-- Search Section (đẩy xuống) -->
+   <TextField fx:id="tfSearch"
+              promptText="Tìm người nộp..."
+              AnchorPane.topAnchor="80.0"
+              AnchorPane.leftAnchor="20.0"
+              prefWidth="350.0" prefHeight="35.0" />
+   <ComboBox fx:id="cbChooseSearch"
+             AnchorPane.topAnchor="80.0"
+             AnchorPane.leftAnchor="390.0"
+             prefWidth="150.0" prefHeight="35.0" />
+   <Button text="Tìm kiếm"
+           styleClass="button3"
+           onAction="#searchNhanKhau"
+           AnchorPane.topAnchor="80.0"
+           AnchorPane.leftAnchor="550.0"
+           prefWidth="80.0" prefHeight="35.0" />
+
+   <!-- Table View (đẩy xuống nữa) -->
+   <TableView fx:id="tvNhanKhau"
+              AnchorPane.topAnchor="130.0"
+              AnchorPane.leftAnchor="10.0"
+              AnchorPane.rightAnchor="10.0"
+              AnchorPane.bottomAnchor="60.0">
+      <columns>
+         <TableColumn fx:id="colMaNhanKhau" text="Mã nhân khẩu" prefWidth="80.0" />
+         <TableColumn fx:id="colTen"         text="Họ và tên"    prefWidth="150.0" />
+         <TableColumn fx:id="colTuoi"        text="Tuổi"         prefWidth="50.0"  />
+         <TableColumn fx:id="colCMND"        text="CMND"         prefWidth="120.0" />
+         <TableColumn fx:id="colSDT"         text="SĐT"          prefWidth="100.0" />
+         <TableColumn fx:id="colMaHo"        text="Mã hộ"        prefWidth="100.0" />
+      </columns>
+   </TableView>
+
+   <!-- Confirm Button -->
+   <Button text="Xác nhận"
+           styleClass="button1"
+           onAction="#xacnhan"
+           AnchorPane.bottomAnchor="20.0"
+           AnchorPane.rightAnchor="20.0"
+           prefWidth="100.0" prefHeight="35.0" />
+
+</AnchorPane>

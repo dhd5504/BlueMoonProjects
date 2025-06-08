@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefWidth="625.0" prefHeight="600.0"
+            styleClass="pane"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.noptien.ChooseKhoanNop">
+
+   <!-- Title -->
+   <Label text="CHỌN KHOẢN THU"
+          style="-fx-font-size: 30px; -fx-font-weight: bold;"
+          AnchorPane.topAnchor="20.0"
+          AnchorPane.leftAnchor="180.0" />
+
+   <!-- Search Section -->
+   <!-- đẩy xuống dưới tiêu đề -->
+   <TextField fx:id="tfSearch"
+              promptText="Tìm khoản thu..."
+              AnchorPane.topAnchor="80.0"
+              AnchorPane.leftAnchor="20.0"
+              prefWidth="350.0" prefHeight="35.0" />
+   <ComboBox fx:id="cbChooseSearch"
+             AnchorPane.topAnchor="80.0"
+             AnchorPane.leftAnchor="380.0"
+             prefWidth="150.0" prefHeight="35.0" />
+   <Button text="Tìm kiếm"
+           styleClass="button3"
+           onAction="#searchKhoanThu"
+           AnchorPane.topAnchor="80.0"
+           AnchorPane.leftAnchor="540.0"
+           prefWidth="80.0" prefHeight="35.0" />
+
+   <!-- Table View -->
+   <!-- Đẩy table thêm một chút để không chạm vào search -->
+   <TableView fx:id="tvKhoanPhi"
+              AnchorPane.topAnchor="130.0"
+              AnchorPane.leftAnchor="10.0"
+              AnchorPane.rightAnchor="10.0"
+              AnchorPane.bottomAnchor="60.0">
+      <columns>
+         <TableColumn fx:id="colMaKhoanPhi"   text="Mã khoản thu"   prefWidth="100.0" />
+         <TableColumn fx:id="colTenKhoanThu"  text="Tên khoản thu"  prefWidth="300.0" />
+         <TableColumn fx:id="colSoTien"       text="Số tiền"        prefWidth="120.0" />
+         <TableColumn fx:id="colLoaiKhoanThu" text="Loại"           prefWidth="100.0" />
+      </columns>
+   </TableView>
+
+   <!-- Confirm Button -->
+   <Button text="Xác nhận"
+           styleClass="button1"
+           onAction="#xacnhan"
+           AnchorPane.bottomAnchor="20.0"
+           AnchorPane.rightAnchor="20.0"
+           prefWidth="100.0" prefHeight="35.0" />
+
+</AnchorPane>

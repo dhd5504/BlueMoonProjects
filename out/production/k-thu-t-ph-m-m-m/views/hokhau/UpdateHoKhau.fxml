@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="600.0" stylesheets="@../../source/change.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.hokhau.UpdateHoKhau">
+    <children>
+        <Label layoutX="220.0" layoutY="30.0" text="Cập nhật Hộ Khẩu" textFill="BLACK">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+
+        <Label layoutX="60.0" layoutY="90.0" text="Mã hộ khẩu" />
+        <TextField fx:id="tfMaHo" layoutX="200.0" layoutY="85.0" prefHeight="30.0" prefWidth="320.0" editable="false" style="-fx-background-color: #eaeaea;" />
+
+        <Label layoutX="60.0" layoutY="140.0" text="Số thành viên" />
+        <TextField fx:id="tfSoThanhVien" layoutX="200.0" layoutY="135.0" prefHeight="30.0" prefWidth="320.0" editable="false" style="-fx-background-color: #eaeaea;" />
+
+        <Label layoutX="60.0" layoutY="190.0" text="Tên chủ hộ" />
+        <TextField fx:id="tfTenChuHo" layoutX="200.0" layoutY="185.0" prefHeight="30.0" prefWidth="320.0" editable="false" style="-fx-background-color: #eaeaea;" />
+
+        <Label layoutX="60.0" layoutY="240.0" text="Số điện thoại" />
+        <TextField fx:id="tfSDT" layoutX="200.0" layoutY="235.0" prefHeight="30.0" prefWidth="320.0" editable="false" style="-fx-background-color: #eaeaea;" />
+
+        <Label layoutX="60.0" layoutY="290.0" text="Địa chỉ" />
+        <TextField fx:id="tfDiaChi" layoutX="200.0" layoutY="285.0" prefHeight="30.0" prefWidth="320.0" />
+
+        <Button layoutX="260.0" layoutY="350.0" text="Cập nhật" onAction="#updateHoKhau" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.khoanthu.UpdateKhoanThu"
+            prefWidth="500" prefHeight="600">
+   <children>
+      <VBox spacing="15"
+            AnchorPane.topAnchor="20"
+            AnchorPane.leftAnchor="20"
+            AnchorPane.rightAnchor="20">
+
+         <!-- Tiêu đề -->
+         <Label text="CẬP NHẬT KHOẢN THU"
+                style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+         <!-- Tên Khoản Thu -->
+         <HBox spacing="10">
+            <Label text="Tên khoản thu:" minWidth="120" />
+            <TextField fx:id="tfTenKhoanThu" />
+         </HBox>
+
+         <!-- Số Tiền -->
+         <HBox spacing="10">
+            <Label text="Số tiền:" minWidth="120" />
+            <TextField fx:id="tfSoTien" />
+         </HBox>
+
+         <!-- Loại Khoản Thu -->
+         <HBox spacing="10">
+            <Label text="Loại:" minWidth="120" />
+            <ComboBox fx:id="cbLoaiKhoanThu" prefWidth="200" />
+         </HBox>
+
+         <!-- Cách Tính -->
+         <HBox spacing="10">
+            <Label text="Cách tính:" minWidth="120" />
+            <ComboBox fx:id="cbCachTinh" prefWidth="200" />
+         </HBox>
+
+         <!-- Đợt Thu: Tên, Ngày BĐ, Ngày KT -->
+         <HBox spacing="10">
+            <Label text="Tên đợt thu:" minWidth="120" />
+            <TextField fx:id="tfTenDotThu" />
+         </HBox>
+         <HBox spacing="10">
+            <Label text="Ngày bắt đầu:" minWidth="120" />
+            <DatePicker fx:id="dpNgayBatDau" />
+         </HBox>
+         <HBox spacing="10">
+            <Label text="Ngày kết thúc:" minWidth="120" />
+            <DatePicker fx:id="dpNgayKetThuc" />
+         </HBox>
+
+         <!-- Đơn vị Tính -->
+         <HBox spacing="10">
+            <Label text="Đơn vị tính:" minWidth="120" />
+            <TextField fx:id="tfDonViTinh" />
+         </HBox>
+
+         <!-- Mô tả -->
+         <HBox spacing="10" alignment="TOP_LEFT">
+            <Label text="Mô tả:" minWidth="120" />
+            <TextArea fx:id="taMoTa" prefRowCount="3" />
+         </HBox>
+
+         <!-- Buttons -->
+         <HBox spacing="20" alignment="CENTER_RIGHT">
+            <Button text="Cập nhật"
+                    onAction="#updateKhoanThu" />
+<!--            <Button text="Hủy"-->
+<!--                    onAction="#closeWindow" />-->
+         </HBox>
+
+      </VBox>
+   </children>
+</AnchorPane>

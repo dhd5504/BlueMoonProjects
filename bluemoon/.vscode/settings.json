@@ -1,0 +1,11 @@
+{
+  "java.project.referencedLibraries": [
+    "D:/javafx-sdk-24.0.1/lib/*.jar",
+    "D:/mysql-connector-j-9.3.0/mysql-connector-j-9.3.0.jar",
+    "D:\\mysql-connector-j-9.3.0\\mysql-connector-j-9.3.0\\mysql-connector-j-9.3.0.jar"
+  ],
+  "java.debug.settings.vmArgs": "--module-path D:/javafx-sdk-24.0.1/lib --add-modules javafx.controls,javafx.fxml",
+  "java.jdt.ls.java.home": "C:/Program Files/Java/jdk-24.0.1",
+  "java.project.outputPath": "bin",
+  "java.project.sourcePaths": ["src"]
+}
