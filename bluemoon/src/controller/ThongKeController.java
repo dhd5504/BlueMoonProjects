@@ -1,97 +1,122 @@
 package controller;
 
-import java.net.URL;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Set;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
-import models.NopTienModel;
-import services.NopTienService;
-import services.QuanHeService;
+import javafx.scene.control.*;
+import models.ThongKeModel;
+import models.KhoanThuModel;
+import models.DotThuModel;
+import services.ThongKeService;
 
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ResourceBundle;
+
+/**
+ * Controller cho giao diện Thống kê - Tổng hợp
+ */
 public class ThongKeController implements Initializable {
-	@FXML private Label lblTongTienDaThu;
-	@FXML private Label lblSoHoDaNop;
-	@FXML private TableView<NopTienModel> tvThongKe;
-	@FXML private TableColumn<NopTienModel, String> colHoGiaDinh;
-	@FXML private TableColumn<NopTienModel, String> colSoTienNop;
-	@FXML private TableColumn<NopTienModel, String> colNgayNop;
+	@FXML private ComboBox<KhoanThuModel> cbKhoanThu;
+	@FXML private ComboBox<DotThuModel>    cbDotThu;
+	@FXML private ComboBox<String>         cbTrangThai;
 
-	private QuanHeService quanHeService = new QuanHeService();
+	@FXML private Label lblTongSoHo;
+	@FXML private Label lblSoHoDaNop;
+	@FXML private Label lblSoHoChuaNop;
+	@FXML private Label lblTongTienDaThu;
+	@FXML private Label lblTongTienDuKien;
+
+	@FXML private TableView<ThongKeModel> tvThongKeTongHop;
+	@FXML private TableColumn<ThongKeModel,String> colKhoanThu;
+	@FXML private TableColumn<ThongKeModel,String> colLoaiKhoan;
+	@FXML private TableColumn<ThongKeModel,String> colSoHoDaNopTong;
+	@FXML private TableColumn<ThongKeModel,String> colSoHoChuaNopTong;
+	@FXML private TableColumn<ThongKeModel,String> colTongDaThu;
+	@FXML private TableColumn<ThongKeModel,String> colTongDuKien;
+
+	private ThongKeService thongKeService = new ThongKeService();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// Load danh sách nộp tiền
-		List<NopTienModel> list;
 		try {
-			list = new NopTienService().getListNopTien();
-		} catch (ClassNotFoundException | SQLException ex) {
-			showAlert("Lỗi tải dữ liệu nộp tiền: " + ex.getMessage());
-			return;
+			// Khởi tạo bộ lọc trong combobox
+			ObservableList<KhoanThuModel> khoanList = FXCollections.observableArrayList(
+					thongKeService.getListKhoanThu()
+			);
+			cbKhoanThu.setItems(khoanList);
+			cbKhoanThu.getItems().add(0, null);
+			cbKhoanThu.setPromptText("Tất cả");
+
+			ObservableList<DotThuModel> dotList = FXCollections.observableArrayList(
+					thongKeService.getListDotThu()
+			);
+			cbDotThu.setItems(dotList);
+			cbDotThu.getItems().add(0, null);
+			cbDotThu.setPromptText("Tất cả");
+
+			cbTrangThai.setItems(FXCollections.observableArrayList(
+					"Tất cả", "Da dong", "Chua dong", "Dong mot phan"
+			));
+			cbTrangThai.getSelectionModel().selectFirst();
+
+			// Thiết lập columns
+			setupColumns();
+
+			// Đọc dữ liệu lần đầu
+			applyFilter();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
-		// Cấu hình các cột
-		colHoGiaDinh.setCellValueFactory(cell -> {
-			int maHo;
-			try {
-				maHo = quanHeService.findHoByNhanKhau(cell.getValue().getIdNhanKhau());
-			} catch (ClassNotFoundException | SQLException e) {
-				maHo = -1;
-			}
-			return new ReadOnlyStringWrapper(maHo > 0 ? String.valueOf(maHo) : "?");
-		});
-
-		colSoTienNop.setCellValueFactory(cell ->
-				new ReadOnlyStringWrapper(
-						String.format("%,.0f", cell.getValue().getSoTienDaNop())
-				)
-		);
-
-		colNgayNop.setCellValueFactory(cell -> {
-			LocalDate d = new java.sql.Date(cell.getValue().getNgayThu().getTime()).toLocalDate();
-			return new ReadOnlyStringWrapper(d.toString());
-		});
-
-		// Đưa dữ liệu lên TableView
-		tvThongKe.setItems(FXCollections.observableArrayList(list));
-
-		// Tính tổng tiền
-		double total = list.stream()
-				.mapToDouble(NopTienModel::getSoTienDaNop)
-				.sum();
-		lblTongTienDaThu.setText(String.format("%,.0f VNĐ", total));
-
-		// Tính số hộ đã nộp
-		Set<Integer> hoSet = new HashSet<>();
-		for (NopTienModel nt : list) {
-			try {
-				int maHo = quanHeService.findHoByNhanKhau(nt.getIdNhanKhau());
-				if (maHo > 0) hoSet.add(maHo);
-			} catch (Exception e) {
-				// bỏ qua lỗi
-			}
-		}
-		lblSoHoDaNop.setText(String.valueOf(hoSet.size()));
 	}
 
-	@FXML private void loc() {
-		// Có thể triển khai logic lọc tại đây nếu cần
+	private void setupColumns() {
+		colKhoanThu.setCellValueFactory(data ->
+				new ReadOnlyStringWrapper(data.getValue().getTenKhoanThu()));
+		colLoaiKhoan.setCellValueFactory(data ->
+				new ReadOnlyStringWrapper(data.getValue().getLoaiKhoan()));
+		colSoHoDaNopTong.setCellValueFactory(data ->
+				new ReadOnlyStringWrapper(String.valueOf(data.getValue().getSoHoDaNop())));
+		colSoHoChuaNopTong.setCellValueFactory(data ->
+				new ReadOnlyStringWrapper(String.valueOf(data.getValue().getSoHoChuaNop())));
+		colTongDaThu.setCellValueFactory(data ->
+				new ReadOnlyStringWrapper(String.format("%.0f", data.getValue().getTongDaThu())));
+		colTongDuKien.setCellValueFactory(data ->
+				new ReadOnlyStringWrapper(String.format("%.0f", data.getValue().getTongDuKien())));
 	}
 
-	private void showAlert(String msg) {
-		Alert alert = new Alert(AlertType.ERROR, msg);
-		alert.setHeaderText(null);
-		alert.showAndWait();
+	@FXML
+	private void loc() {
+		applyFilter();
+	}
+
+	private void applyFilter() {
+		try {
+			Integer maDot = cbDotThu.getValue() != null ? cbDotThu.getValue().getMaDotThu() : null;
+			Integer maKhoan = cbKhoanThu.getValue() != null ? cbKhoanThu.getValue().getMaKhoanThu() : null;
+			String tt = cbTrangThai.getValue();
+
+			// Lấy kết quả thống kê từ service
+			List<ThongKeModel> data = thongKeService.getThongKeTongHop(maKhoan, maDot, tt);
+			ObservableList<ThongKeModel> items = FXCollections.observableArrayList(data);
+			tvThongKeTongHop.setItems(items);
+
+			// Cập nhật summary
+			long totalHo  = thongKeService.countHo();
+			long daNop     = data.stream().mapToLong(ThongKeModel::getSoHoDaNop).sum();
+			double tongThu= data.stream().mapToDouble(ThongKeModel::getTongDaThu).sum();
+			double duKien = data.stream().mapToDouble(ThongKeModel::getTongDuKien).sum();
+
+			lblTongSoHo.setText(String.valueOf(totalHo));
+			lblSoHoDaNop.setText(String.valueOf(daNop));
+			lblSoHoChuaNop.setText(String.valueOf(totalHo - daNop));
+			lblTongTienDaThu.setText(String.format("%.0f", tongThu));
+			lblTongTienDuKien.setText(String.format("%.0f", duKien));
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

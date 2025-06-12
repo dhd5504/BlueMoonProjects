@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane prefWidth="800.0" prefHeight="600.0"
+<AnchorPane prefWidth="1000.0" prefHeight="700.0"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.ThongKeController"
@@ -12,44 +12,64 @@
             styleClass="pane">
 
     <!-- Title -->
-    <Label text="THỐNG KÊ - TỔNG HỢP" styleClass="header"
-           AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="300.0" />
+    <Label text="THỐNG KÊ QUẢN LÝ KHOẢN THU"
+           styleClass="header"
+           style="-fx-font-weight: bold; -fx-font-size: 24px;"
+           AnchorPane.topAnchor="10.0"
+           AnchorPane.leftAnchor="150.0" />
 
     <!-- Bộ lọc -->
-    <HBox spacing="10.0" AnchorPane.topAnchor="50.0" AnchorPane.leftAnchor="20.0">
+    <HBox spacing="10.0" AnchorPane.topAnchor="60.0" AnchorPane.leftAnchor="20.0">
         <children>
             <Label text="Khoản thu:" />
-            <ComboBox fx:id="cbKhoanThu" prefWidth="150.0" />
+            <ComboBox fx:id="cbKhoanThu" prefWidth="140.0" />
             <Label text="Đợt thu:" />
-            <ComboBox fx:id="cbDotThu" prefWidth="150.0" />
-            <Button text="Lọc" onAction="#loc" styleClass="button3" prefWidth="80.0" />
+            <ComboBox fx:id="cbDotThu" prefWidth="140.0" />
+            <Label text="Trạng thái:" />
+            <ComboBox fx:id="cbTrangThai" prefWidth="140" />
+            <Button text="Lọc" onAction="#loc" styleClass="button3" prefWidth="65.0" />
         </children>
     </HBox>
 
-    <!-- Thông tin tổng quát -->
-    <HBox spacing="20.0" AnchorPane.topAnchor="100.0" AnchorPane.leftAnchor="20.0">
+    <!-- Thông tin tổng quan -->
+    <GridPane hgap="20" vgap="10" AnchorPane.topAnchor="110.0" AnchorPane.leftAnchor="20.0">
+        <columnConstraints>
+            <ColumnConstraints prefWidth="150" />
+            <ColumnConstraints prefWidth="150" />
+            <ColumnConstraints prefWidth="150" />
+            <ColumnConstraints prefWidth="150" />
+        </columnConstraints>
         <children>
-            <VBox spacing="5">
-                <Label text="Tổng tiền đã thu:" />
-                <Label fx:id="lblTongTienDaThu" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-            </VBox>
-            <VBox spacing="5">
-                <Label text="Số hộ đã nộp:" />
-                <Label fx:id="lblSoHoDaNop" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-            </VBox>
-        </children>
-    </HBox>
+            <Label text="Tổng số hộ:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+            <Label fx:id="lblTongSoHo" GridPane.rowIndex="0" GridPane.columnIndex="1" style="-fx-font-weight: bold" />
 
-    <!-- Bảng thống kê chi tiết -->
-    <TableView fx:id="tvThongKe"
-               AnchorPane.topAnchor="160.0"
+            <Label text="Số hộ đã nộp:" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+            <Label fx:id="lblSoHoDaNop" GridPane.rowIndex="0" GridPane.columnIndex="3" style="-fx-font-weight: bold" />
+
+            <Label text="Số hộ chưa nộp:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <Label fx:id="lblSoHoChuaNop" GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-font-weight: bold" />
+
+            <Label text="Tổng tiền đã thu:" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+            <Label fx:id="lblTongTienDaThu" GridPane.rowIndex="1" GridPane.columnIndex="3" style="-fx-font-weight: bold" />
+
+            <Label text="Tổng tiền dự kiến:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+            <Label fx:id="lblTongTienDuKien" GridPane.rowIndex="2" GridPane.columnIndex="1" style="-fx-font-weight: bold" />
+        </children>
+    </GridPane>
+
+    <!-- Bảng thống kê tổng hợp -->
+    <TableView fx:id="tvThongKeTongHop"
+               AnchorPane.topAnchor="220.0"
                AnchorPane.leftAnchor="20.0"
                AnchorPane.rightAnchor="20.0"
-               AnchorPane.bottomAnchor="20.0">
+               prefHeight="360">
         <columns>
-            <TableColumn fx:id="colHoGiaDinh" prefWidth="300.0" text="Hộ gia đình" />
-            <TableColumn fx:id="colSoTienNop" prefWidth="200.0" text="Số tiền đã nộp" />
-            <TableColumn fx:id="colNgayNop" prefWidth="200.0" text="Ngày nộp" />
+            <TableColumn fx:id="colKhoanThu" text="Khoản thu" prefWidth="200" />
+            <TableColumn fx:id="colLoaiKhoan" text="Loại" prefWidth="100" />
+            <TableColumn fx:id="colSoHoDaNopTong" text="Số hộ đã nộp" prefWidth="120" />
+            <TableColumn fx:id="colSoHoChuaNopTong" text="Số hộ chưa nộp" prefWidth="120" />
+            <TableColumn fx:id="colTongDaThu" text="Đã thu (VNĐ)" prefWidth="150" />
+            <TableColumn fx:id="colTongDuKien" text="Dự kiến thu (VNĐ)" prefWidth="150" />
         </columns>
     </TableView>
 

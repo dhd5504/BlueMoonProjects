@@ -25,7 +25,7 @@
             <Insets top="10" right="10" bottom="10" left="10"/>
          </padding>
          <Region fx:id="spacer" HBox.hgrow="ALWAYS"/>
-         <Label text="Xin chào, Tổ trưởng!" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+         <Label text="Xin chào!" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
          <Button text="Đăng xuất" onAction="#handleLogout"
                  style="-fx-background-color: #d9534f; -fx-text-fill: white;"/>
       </HBox>
