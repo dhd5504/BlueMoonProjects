@@ -10,10 +10,15 @@ public class NopTienModel {
 	private Date ngayThu;
 	private double soTienDaNop;
 	private String trangThai;
+	private double soTienCanNop;
+
+	// Thêm 2 thuộc tính phục vụ giao diện
+	private String tenNguoiNop;
+	private String tenKhoanThu;
 
 	public NopTienModel() {}
 
-	// Constructor đầy đủ, có idNhanKhau
+	// Constructor đầy đủ
 	public NopTienModel(int idNopTien,
 						int idNhanKhau,
 						int maKhoanThu,
@@ -30,7 +35,7 @@ public class NopTienModel {
 		this.trangThai   = trangThai;
 	}
 
-	// getter / setter IDNopTien
+	// Getter/Setter IDNopTien
 	public int getIdNopTien() {
 		return idNopTien;
 	}
@@ -38,7 +43,7 @@ public class NopTienModel {
 		this.idNopTien = idNopTien;
 	}
 
-	// getter / setter IDNhanKhau
+	// Getter/Setter IDNhanKhau
 	public int getIdNhanKhau() {
 		return idNhanKhau;
 	}
@@ -46,7 +51,7 @@ public class NopTienModel {
 		this.idNhanKhau = idNhanKhau;
 	}
 
-	// getter / setter MaKhoanThu
+	// Getter/Setter MaKhoanThu
 	public int getMaKhoanThu() {
 		return maKhoanThu;
 	}
@@ -54,7 +59,7 @@ public class NopTienModel {
 		this.maKhoanThu = maKhoanThu;
 	}
 
-	// getter / setter MaDotThu
+	// Getter/Setter MaDotThu
 	public int getMaDotThu() {
 		return maDotThu;
 	}
@@ -62,7 +67,7 @@ public class NopTienModel {
 		this.maDotThu = maDotThu;
 	}
 
-	// getter / setter NgayThu
+	// Getter/Setter NgayThu
 	public Date getNgayThu() {
 		return ngayThu;
 	}
@@ -70,7 +75,7 @@ public class NopTienModel {
 		this.ngayThu = ngayThu;
 	}
 
-	// getter / setter SoTienDaNop
+	// Getter/Setter SoTienDaNop
 	public double getSoTienDaNop() {
 		return soTienDaNop;
 	}
@@ -78,11 +83,35 @@ public class NopTienModel {
 		this.soTienDaNop = soTienDaNop;
 	}
 
-	// getter / setter TrangThai
+	// Getter/Setter TrangThai
 	public String getTrangThai() {
 		return trangThai;
 	}
 	public void setTrangThai(String trangThai) {
 		this.trangThai = trangThai;
 	}
+
+	// Getter/Setter TenNguoiNop
+	public String getTenNguoiNop() {
+		return tenNguoiNop;
+	}
+	public void setTenNguoiNop(String tenNguoiNop) {
+		this.tenNguoiNop = tenNguoiNop;
+	}
+
+	// Getter/Setter TenKhoanThu
+	public String getTenKhoanThu() {
+		return tenKhoanThu;
+	}
+	public void setTenKhoanThu(String tenKhoanThu) {
+		this.tenKhoanThu = tenKhoanThu;
+	}
+
+	public double getSoTienCanNop() {
+		return soTienCanNop;
+	}
+	public void setSoTienCanNop(double soTienCanNop) {
+		this.soTienCanNop = soTienCanNop;
+	}
+
 }

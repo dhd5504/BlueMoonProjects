@@ -150,6 +150,39 @@ CREATE TABLE users (
                        FOREIGN KEY (IDVaiTro) REFERENCES vai_tro(IDVaiTro)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
+DELIMITER $$
+
+CREATE TRIGGER trg_after_insert_dot_thu
+    AFTER INSERT ON dot_thu
+    FOR EACH ROW
+BEGIN
+    DECLARE v_cach_tinh ENUM('TheoHo','TheoNguoi','TuNguyen');
+
+    -- Lấy kiểu tính của khoản thu
+    SELECT CachTinh INTO v_cach_tinh
+    FROM khoan_thu
+    WHERE MaKhoanThu = NEW.MaKhoanThu;
+
+    -- Trường hợp Theo Hộ → Thêm 1 dòng cho mỗi hộ (lấy chủ hộ)
+    IF v_cach_tinh = 'TheoHo' THEN
+        INSERT INTO nop_tien (IDNhanKhau, MaKhoanThu, MaDotThu, TrangThai)
+        SELECT IDChuHo, NEW.MaKhoanThu, NEW.MaDotThu, 'Chua dong'
+        FROM chu_ho;
+
+        -- Trường hợp Theo Người → Thêm cho tất cả nhân khẩu
+    ELSEIF v_cach_tinh = 'TheoNguoi' THEN
+        INSERT INTO nop_tien (IDNhanKhau, MaKhoanThu, MaDotThu, TrangThai)
+        SELECT ID, NEW.MaKhoanThu, NEW.MaDotThu, 'Chua dong'
+        FROM nhan_khau;
+
+        -- Trường hợp Tự nguyện → Không thêm mặc định
+    END IF;
+
+END$$
+
+DELIMITER ;
+
+
 -- ==============================
 -- DỮ LIỆU MẪU
 -- ==============================
@@ -174,11 +207,12 @@ INSERT INTO quan_he    (MaHo, IDThanhVien, QuanHe) VALUES
 INSERT INTO vai_tro    (TenVaiTro) VALUES
                                        ('Admin'),
                                        ('Ke toan'),
-                                       ('Nguoi dan');
+                                       ('To Truong');
 
 INSERT INTO users      (username, passwd, IDVaiTro) VALUES
                                                         ('admin','admin123',1),
-                                                        ('ketoan1','ketoan123',2);
+                                                        ('ketoan1','ketoan123',2),
+                                                        ('totruong','totruong123',3);
 
 INSERT INTO khoan_thu  (TenKhoanThu,SoTien,LoaiKhoanThu,CachTinh,DonViTinh,MoTa) VALUES
                                                                                      ('Phí vệ sinh',6000,'BatBuoc','TheoNguoi','VNĐ/người/tháng','Thu hàng năm'),

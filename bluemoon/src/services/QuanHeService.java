@@ -64,5 +64,31 @@ public class QuanHeService {
 		connection.close();
 		return list;
 	}
+	// Trả về MaHo từ ID nhân khẩu
+	public int findHoByNhanKhau(int idNhanKhau) throws SQLException, ClassNotFoundException {
+		String sql = "SELECT MaHo FROM quan_he WHERE IDThanhVien = ?";
+		try (Connection conn = MysqlConnection.getMysqlConnection();
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setInt(1, idNhanKhau);
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) return rs.getInt("MaHo");
+			}
+		}
+		return -1;
+	}
+
+	// Đếm số nhân khẩu trong một hộ
+	public int countNhanKhauInHo(int maHo) throws SQLException, ClassNotFoundException {
+		String sql = "SELECT COUNT(*) FROM quan_he WHERE MaHo = ?";
+		try (Connection conn = MysqlConnection.getMysqlConnection();
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setInt(1, maHo);
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) return rs.getInt(1);
+			}
+		}
+		return 0;
+	}
+
 
 }

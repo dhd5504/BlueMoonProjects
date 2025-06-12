@@ -45,6 +45,7 @@ public class NopTienController implements Initializable {
 	@FXML private TableColumn<NopTienModel, String> tbcTrangThai;
 	@FXML private ComboBox<String> cbChooseSearch;
 	@FXML private TextField tfSearch;
+	@FXML private TableColumn<NopTienModel, String> tbcSoTienCanNop;
 
 	private ObservableList<NopTienModel> listValueTableView;
 	private List<NopTienModel>       listNopTien;
@@ -60,6 +61,9 @@ public class NopTienController implements Initializable {
 		listNhanKhau = new NhanKhauService().getListNhanKhau();
 		listValueTableView = FXCollections.observableArrayList(listNopTien);
 
+		tbcSoTienCanNop.setCellValueFactory(p ->
+				new ReadOnlyStringWrapper(String.format("%.0f", p.getValue().getSoTienCanNop()))
+		);
 		// 2. Build maps
 		mapIdToTen = new HashMap<>();
 		for (NhanKhauModel nk : listNhanKhau) {
@@ -159,6 +163,35 @@ public class NopTienController implements Initializable {
 			new NopTienService()
 					.del(selected.getIdNopTien(), selected.getMaKhoanThu());
 			showNopTien();
+		}
+	}
+
+	public void updateNopTien(ActionEvent event) throws IOException {
+		NopTienModel selected = tvNopTien.getSelectionModel().getSelectedItem();
+		if (selected == null) {
+			showAlert("Hãy chọn dòng muốn cập nhật!", AlertType.WARNING);
+			return;
+		}
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/noptien/UpdateNopTien.fxml"));
+		Parent root = loader.load();
+
+		// Gửi dữ liệu sang controller cập nhật
+		controller.noptien.UpdateNopTien controller = loader.getController();
+		controller.setData(selected);  // truyền model được chọn
+
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root, 800, 600));
+		stage.setTitle("Cập nhật nộp tiền");
+		stage.setResizable(false);
+		stage.showAndWait();
+
+		// Sau khi đóng form, load lại dữ liệu
+		try {
+			showNopTien();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			showAlert("Lỗi khi tải lại danh sách sau cập nhật!", Alert.AlertType.ERROR);
 		}
 	}
 

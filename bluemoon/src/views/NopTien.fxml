@@ -20,9 +20,8 @@
             <columns>
                 <TableColumn fx:id="tbcTenNguoi"    prefWidth="120.0" text="Tên người nộp" />
                 <TableColumn fx:id="tbcTenKhoanThu" prefWidth="120.0" text="Tên khoản thu" />
-                <!-- Cột Đợt thu mới -->
-                <TableColumn fx:id="tbcTenDotThu"   prefWidth="120.0" text="Đợt thu" />
                 <TableColumn fx:id="tbcNgayThu"     prefWidth="100.0" text="Ngày thu" />
+                <TableColumn fx:id="tbcSoTienCanNop" prefWidth="100.0" text="Số tiền cần nộp" />
                 <TableColumn fx:id="tbcSoTienDaNop" prefWidth="100.0" text="Số tiền đã nộp" />
                 <TableColumn fx:id="tbcTrangThai"   prefWidth="100.0" text="Trạng thái" />
             </columns>
@@ -66,5 +65,11 @@
                 prefHeight="40.0" prefWidth="130.0"
                 AnchorPane.topAnchor="5.0"
                 AnchorPane.leftAnchor="160.0" />
+        <Button text="Cập nhật" styleClass="button1" textFill="#2e088d"
+                onAction="#updateNopTien"
+                layoutX="310.0" layoutY="5.0"
+                prefHeight="40.0" prefWidth="130.0"
+                AnchorPane.topAnchor="5.0"
+                AnchorPane.leftAnchor="310.0" />
     </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -9,8 +10,13 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -18,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
+import javafx.stage.Stage;
 
 import models.DotThuModel;
 import models.HoKhauModel;
@@ -85,7 +92,6 @@ public class MainController implements Initializable {
 			});
 			chartDoanhThuTheoThang.getData().setAll(series);
 
-			// -- Tooltip cho AreaChart
 			for (XYChart.Data<String, Number> d : series.getData()) {
 				Tooltip.install(d.getNode(), new Tooltip(d.getXValue() + ": " + d.getYValue()));
 			}
@@ -110,7 +116,6 @@ public class MainController implements Initializable {
 				return new SimpleObjectProperty<>(d);
 			});
 
-			// Lọc đợt thu sắp đến hạn trong vòng 7 ngày
 			LocalDate today = LocalDate.now();
 			List<DotThuModel> sapHetHan = listDotThu.stream()
 					.filter(dt -> dt.getNgayKetThuc() != null)
@@ -124,5 +129,14 @@ public class MainController implements Initializable {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	// Thêm xử lý nút Đăng xuất
+	@FXML
+	private void handleLogout(ActionEvent event) throws IOException {
+		Parent login = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(new Scene(login, 800, 600));
+		stage.show();
 	}
 }

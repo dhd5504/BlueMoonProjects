@@ -4,22 +4,36 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.MainController">
 
+   <!-- Nút Logout ở top -->
+   <top>
+      <HBox alignment="TOP_RIGHT" spacing="10">
+         <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+         </padding>
+         <Region fx:id="spacer" HBox.hgrow="ALWAYS"/>
+         <Label text="Xin chào, Tổ trưởng!" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+         <Button text="Đăng xuất" onAction="#handleLogout"
+                 style="-fx-background-color: #d9534f; -fx-text-fill: white;"/>
+      </HBox>
+   </top>
+
    <!-- Center: Dashboard Content -->
    <center>
       <VBox spacing="20">
-         <!-- Padding cho toàn bộ content -->
          <padding>
             <Insets top="15" right="15" bottom="15" left="15"/>
          </padding>
@@ -56,7 +70,7 @@
             </Pane>
          </HBox>
 
-         <!-- Charts: đổi sang AreaChart -->
+         <!-- Charts -->
          <HBox spacing="20">
             <AreaChart fx:id="chartDoanhThuTheoThang"
                        prefWidth="400" prefHeight="250">
@@ -84,5 +98,4 @@
          </TableView>
       </VBox>
    </center>
-
 </BorderPane>

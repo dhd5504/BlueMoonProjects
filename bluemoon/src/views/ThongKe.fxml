@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefWidth="650.0" prefHeight="600.0"
+<AnchorPane prefWidth="800.0" prefHeight="600.0"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.ThongKeController"
@@ -11,41 +12,44 @@
             styleClass="pane">
 
     <!-- Title -->
-    <Label text="THỐNG KÊ" styleClass="header"
-           AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="280.0" />
+    <Label text="THỐNG KÊ - TỔNG HỢP" styleClass="header"
+           AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="300.0" />
 
-    <!-- Khoản thu -->
-    <Label text="Khoản thu:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0" />
-    <ComboBox fx:id="cbKhoanThu"
-              prefWidth="200.0" prefHeight="30.0"
-              AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="75.0" />
+    <!-- Bộ lọc -->
+    <HBox spacing="10.0" AnchorPane.topAnchor="50.0" AnchorPane.leftAnchor="20.0">
+        <children>
+            <Label text="Khoản thu:" />
+            <ComboBox fx:id="cbKhoanThu" prefWidth="150.0" />
+            <Label text="Đợt thu:" />
+            <ComboBox fx:id="cbDotThu" prefWidth="150.0" />
+            <Button text="Lọc" onAction="#loc" styleClass="button3" prefWidth="80.0" />
+        </children>
+    </HBox>
 
-    <!-- Đợt thu -->
-    <Label text="Đợt thu:" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="80.0" />
-    <ComboBox fx:id="cbDotThu"
-              prefWidth="200.0" prefHeight="30.0"
-              AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="75.0" />
+    <!-- Thông tin tổng quát -->
+    <HBox spacing="20.0" AnchorPane.topAnchor="100.0" AnchorPane.leftAnchor="20.0">
+        <children>
+            <VBox spacing="5">
+                <Label text="Tổng tiền đã thu:" />
+                <Label fx:id="lblTongTienDaThu" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Số hộ đã nộp:" />
+                <Label fx:id="lblSoHoDaNop" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            </VBox>
+        </children>
+    </HBox>
 
-    <!-- Hiển thị khoản thu đang chọn -->
-    <Label fx:id="lblChonKhoan" text=""
-           AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="120.0" />
-
-    <!-- Nút Lọc -->
-    <Button text="Lọc" styleClass="button1"
-            onAction="#loc"
-            prefWidth="80.0" prefHeight="30.0"
-            AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="160.0" />
-
-    <!-- Bảng Thống kê -->
+    <!-- Bảng thống kê chi tiết -->
     <TableView fx:id="tvThongKe"
-               prefWidth="630.0" prefHeight="370.0"
-               AnchorPane.topAnchor="200.0"
-               AnchorPane.leftAnchor="10.0"
-               AnchorPane.rightAnchor="10.0"
-               AnchorPane.bottomAnchor="10.0">
+               AnchorPane.topAnchor="160.0"
+               AnchorPane.leftAnchor="20.0"
+               AnchorPane.rightAnchor="20.0"
+               AnchorPane.bottomAnchor="20.0">
         <columns>
-            <TableColumn fx:id="colTenPhi"    prefWidth="315.0" text="Tên phí" />
-            <TableColumn fx:id="colTongSoTien" prefWidth="315.0" text="Tổng số tiền" />
+            <TableColumn fx:id="colHoGiaDinh" prefWidth="300.0" text="Hộ gia đình" />
+            <TableColumn fx:id="colSoTienNop" prefWidth="200.0" text="Số tiền đã nộp" />
+            <TableColumn fx:id="colNgayNop" prefWidth="200.0" text="Ngày nộp" />
         </columns>
     </TableView>
 
